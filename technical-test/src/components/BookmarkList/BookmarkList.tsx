@@ -2,7 +2,7 @@ import Bookmark from "../Bookmark";
 
 type Props = {
     bookmarksList: Bookmark[];
-    deleteBookmark: (bookmarkUrl: string) => void;
+    deleteBookmark: (bookmarkCreationDate: string) => void;
 };
 
 const BookmarkList = (props: Props) => {

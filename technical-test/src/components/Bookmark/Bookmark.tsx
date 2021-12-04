@@ -1,9 +1,10 @@
 import { MouseEvent } from "react";
 import { VIDEO } from "../../constants";
+import { formatDate, formatTimeSince } from "../../utils";
 
 type Props = {
     bookmark: Bookmark;
-    deleteBookmark: (bookmarkUrl: string) => void;
+    deleteBookmark: (bookmarkCreationDate: string) => void;
 };
 
 const Bookmark = (props: Props) => {
@@ -18,11 +19,14 @@ const Bookmark = (props: Props) => {
             <p>{bookmark.title}</p>
             <p>{bookmark.author}</p>
             <p>{bookmark.url}</p>
-            <p>{bookmark.bookmarkedDate}</p>
-            <p>{bookmark.uploadDate}</p>
+            <p>{formatTimeSince(bookmark.bookmarkedDate)}</p>
+            <p>
+                {bookmark.uploadDate &&
+                    formatDate(new Date(bookmark.uploadDate))}
+            </p>
             <p>
                 {bookmark.type === VIDEO
-                    ? bookmark.duration
+                    ? `${bookmark.duration}min`
                     : `${bookmark.width}x${bookmark.height}`}
             </p>
             <img src={bookmark.preview} alt="preview" />

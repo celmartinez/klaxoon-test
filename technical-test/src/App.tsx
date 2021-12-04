@@ -7,7 +7,7 @@ function App() {
     const [bookmarksList, setBookmarksList] = useState<Bookmark[]>([]);
 
     const saveBookmark = (bookmark: Bookmark) => {
-        setBookmarksList([...bookmarksList, bookmark]);
+        setBookmarksList([bookmark, ...bookmarksList]);
     };
 
     const deleteBookmark = (bookmarkedDate: string) => {
