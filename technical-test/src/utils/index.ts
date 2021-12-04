@@ -1,4 +1,4 @@
-import { FLICKR_NAME, VIMEO_NAME } from "../constants";
+import { FLICKR_NAME, PHOTO, VIDEO, VIMEO_NAME } from "../constants";
 
 export const formatBookmarkObject = (bookmark: any) => {
     const {
@@ -17,6 +17,7 @@ export const formatBookmarkObject = (bookmark: any) => {
     const uploadDate = upload_date; // TODO: format like that (le 3 novembre 2020
     if (provider_name === FLICKR_NAME)
         return {
+            type: PHOTO as PHOTO,
             preview: thumbnail_url,
             url,
             title,
@@ -28,6 +29,7 @@ export const formatBookmarkObject = (bookmark: any) => {
         };
     else if (provider_name === VIMEO_NAME) {
         return {
+            type: VIDEO as VIDEO,
             preview: thumbnail_url,
             url,
             title,

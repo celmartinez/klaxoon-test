@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import AddBookmarkForm from "./components/AddBookmarkForm";
+import BookmarkList from "./components/BookmarkList";
 
 function App() {
     const [bookmarksList, setBookmarksList] = useState<Bookmark[]>([]);
@@ -12,12 +13,7 @@ function App() {
     return (
         <div className="App">
             <AddBookmarkForm saveBookmark={saveBookmark} />
-            {bookmarksList.map((bm: Bookmark) => (
-                <>
-                    <div>{bm.title}</div>
-                    <img src={bm.preview} />
-                </>
-            ))}
+            <BookmarkList bookmarksList={bookmarksList} />
         </div>
     );
 }

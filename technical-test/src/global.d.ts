@@ -1,13 +1,22 @@
-interface BookmarkBase {
+const VIDEO = "VIDEO";
+type VIDEO = typeof VIDEO;
+const PHOTO = "PHOTO";
+type PHOTO = typeof PHOTO;
+
+type BookmarkBase<T> = {
     preview: string;
     url: string;
     title: string;
     author: string;
     boomarkedDate: string;
     uploadDate: string;
-}
+} & T;
 
-type VideoBookmark = BookmarkBase & { duration: number };
-type PhotoBookmark = BookmarkBase & { width: number; height: number };
+type VideoBookmark = BookmarkBase<{ type: VIDEO; duration: number }>;
+type PhotoBookmark = BookmarkBase<{
+    type: PHOTO;
+    width: number;
+    height: number;
+}>;
 
 type Bookmark = VideoBookmark | PhotoBookmark;
