@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { FLICKR_NAME, VIMEO_NAME } from "../../constants";
 import { formatBookmarkObject } from "../../utils";
 
 type Props = {
@@ -12,8 +13,8 @@ const AddBookMarkForm = (props: Props) => {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        if (error) setError("");
-    }, [inputValue]);
+        if (inputValue && error) setError("");
+    }, [inputValue, error]);
 
     const fetchBookmarkMetadata = async () => {
         setIsLoading(true);
@@ -27,10 +28,16 @@ const AddBookMarkForm = (props: Props) => {
                 setError(bookmarkMetaData.error);
                 return;
             }
-            // TODO: if provider_name !== Flickr || Vimeo : error, link not supported
-            const bookmarkFormated: Bookmark | null =
-                formatBookmarkObject(bookmarkMetaData);
-            if (bookmarkFormated) saveBookmark(bookmarkFormated);
+            if (
+                bookmarkMetaData.provider_name === FLICKR_NAME ||
+                bookmarkMetaData.provider_name === VIMEO_NAME
+            ) {
+                const bookmarkFormated: Bookmark | null =
+                    formatBookmarkObject(bookmarkMetaData);
+                if (bookmarkFormated) saveBookmark(bookmarkFormated);
+                return;
+            }
+            setError("link not supported");
         } catch (err) {
             console.error(err);
         } finally {
@@ -63,7 +70,7 @@ const AddBookMarkForm = (props: Props) => {
                     value="Go"
                 />
             </form>
-            {error}
+            <p className="error">{error}</p>
         </>
     );
 };

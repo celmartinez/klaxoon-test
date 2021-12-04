@@ -13,7 +13,7 @@ export const formatBookmarkObject = (bookmark: any) => {
         height,
         duration,
     } = bookmark;
-    const boomarkedDate = new Date().toISOString(); // TODO: format like that (il y a une heure, il y a 2 minutes...)
+    const bookmarkedDate = new Date().toISOString(); // TODO: format like that (il y a une heure, il y a 2 minutes...)
     const uploadDate = upload_date; // TODO: format like that (le 3 novembre 2020
     if (provider_name === FLICKR_NAME)
         return {
@@ -22,7 +22,7 @@ export const formatBookmarkObject = (bookmark: any) => {
             url,
             title,
             author: author_name ?? author_url,
-            boomarkedDate,
+            bookmarkedDate,
             uploadDate,
             width,
             height,
@@ -34,7 +34,7 @@ export const formatBookmarkObject = (bookmark: any) => {
             url,
             title,
             author: author_name ?? author_url,
-            boomarkedDate,
+            bookmarkedDate,
             uploadDate,
             duration,
         };

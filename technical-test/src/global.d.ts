@@ -8,7 +8,7 @@ type BookmarkBase<T> = {
     url: string;
     title: string;
     author: string;
-    boomarkedDate: string;
+    bookmarkedDate: string;
     uploadDate: string;
 } & T;
 

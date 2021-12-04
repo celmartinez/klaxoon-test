@@ -10,10 +10,24 @@ function App() {
         setBookmarksList([...bookmarksList, bookmark]);
     };
 
+    const deleteBookmark = (bookmarkedDate: string) => {
+        const index = bookmarksList.findIndex(
+            (bm) => bm.bookmarkedDate === bookmarkedDate
+        );
+        if (index > -1) {
+            const newBookmarkList = [...bookmarksList];
+            newBookmarkList.splice(index, 1);
+            setBookmarksList(newBookmarkList);
+        }
+    };
+
     return (
         <div className="App">
             <AddBookmarkForm saveBookmark={saveBookmark} />
-            <BookmarkList bookmarksList={bookmarksList} />
+            <BookmarkList
+                bookmarksList={bookmarksList}
+                deleteBookmark={deleteBookmark}
+            />
         </div>
     );
 }
