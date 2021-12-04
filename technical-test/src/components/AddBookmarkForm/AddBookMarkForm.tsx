@@ -1,6 +1,12 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { formatBookmarkObject } from "../../utils";
 
-const AddBookMarkForm = () => {
+type Props = {
+    saveBookmark: (bookmark: Bookmark) => void;
+};
+
+const AddBookMarkForm = (props: Props) => {
+    const { saveBookmark } = props;
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
@@ -17,9 +23,14 @@ const AddBookMarkForm = () => {
                 `http://noembed.com/embed?url=${inputValue}`
             );
             const bookmarkMetaData = await response.json();
-            console.log("bookmarkMetaData :>> ", bookmarkMetaData);
-            if (bookmarkMetaData.error) setError(bookmarkMetaData.error);
-            return bookmarkMetaData;
+            if (bookmarkMetaData.error) {
+                setError(bookmarkMetaData.error);
+                return;
+            }
+            // TODO: if provider_name !== Flickr || Vimeo : error, link not supported
+            const bookmarkFormated: Bookmark | null =
+                formatBookmarkObject(bookmarkMetaData);
+            if (bookmarkFormated) saveBookmark(bookmarkFormated);
         } catch (err) {
             console.error(err);
         } finally {
