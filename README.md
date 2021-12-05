@@ -8,9 +8,9 @@ Small app to create a bookmark list of Flickr and Vimeo links.
 
 Clone the repository
 
-### `cd technical-test`
+`cd technical-test`
 
-### `yarn && yarn start`
+`yarn && yarn start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
