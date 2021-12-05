@@ -23,6 +23,7 @@ function App() {
 
     return (
         <div className="App">
+            <h2>My Bookmark App</h2>
             <AddBookmarkForm saveBookmark={saveBookmark} />
             <BookmarkList
                 bookmarksList={bookmarksList}

@@ -55,11 +55,12 @@ const AddBookMarkForm = (props: Props) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
                 <label>
                     Add a bookmark:
                     <input
                         type="text"
+                        placeholder="Paste your link here..."
                         value={inputValue}
                         onChange={handleChange}
                     />

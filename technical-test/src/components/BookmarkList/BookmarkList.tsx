@@ -1,4 +1,4 @@
-import Bookmark from "../Bookmark";
+import BookmarkItem from "../BookmarkItem";
 
 type Props = {
     bookmarksList: Bookmark[];
@@ -9,13 +9,15 @@ const BookmarkList = (props: Props) => {
     const { bookmarksList, deleteBookmark } = props;
     return (
         <div className="bookmark-list">
-            {bookmarksList.map((bookmark: Bookmark) => (
-                <Bookmark
-                    key={bookmark.bookmarkedDate}
-                    bookmark={bookmark}
-                    deleteBookmark={deleteBookmark}
-                />
-            ))}
+            {bookmarksList.length > 0
+                ? bookmarksList.map((bookmark: Bookmark) => (
+                      <BookmarkItem
+                          key={bookmark.bookmarkedDate}
+                          bookmark={bookmark}
+                          deleteBookmark={deleteBookmark}
+                      />
+                  ))
+                : "Your bookmark list is empty"}
         </div>
     );
 };
